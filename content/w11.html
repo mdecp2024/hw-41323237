@@ -142,7 +142,27 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">HW 1 << <a href='HW 1.html'>Previous</a> <a href='HW 1 Exam.html'>Next</a> >> HW 1 Exam<br /><h1>w11</h1>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=1Hils6xNlrqfYmk4" title="YouTube video player" width="560"></iframe></p><br />HW 1 << <a href='HW 1.html'>Previous</a> <a href='HW 1 Exam.html'>Next</a> >> HW 1 Exam</div>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=1Hils6xNlrqfYmk4" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
+center_x, center_y = 5, 5
+# 圓的半徑
+radius = 4
+# 10x10 的區域大小
+size = 10
+
+# 遍歷區域中的每個位置
+for y in range(size):
+    for x in range(size):
+        # 計算當前位置與圓心的距離平方
+        distance_squared = (x - center_x) ** 2 + (y - center_y) ** 2
+        # 若距離平方小於等於半徑的平方，則列印 *
+        if distance_squared &lt;= radius ** 2:
+            print("*", end="")
+        else:
+            print(" ", end="")
+    # 換行
+    print()</pre>
+<p></p><br />HW 1 << <a href='HW 1.html'>Previous</a> <a href='HW 1 Exam.html'>Next</a> >> HW 1 Exam</div>
         
     <!-- footer -->
       <div class="container">
