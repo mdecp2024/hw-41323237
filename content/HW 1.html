@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li><a href='w11.html'>w11</a><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w10.html'>w10</a><li><a href='w7.html'>w7</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li class='has-children'><a href='HW 2 Exam.html'>HW 2 Exam</a><ul class='dropdown'><li><a href='w6.html'>w6</a><li><a href='w8-1.html'>w8-1</a></li></li></ul></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w8-2.html'>w8-2</a><li><a href='w8-3.html'>w8-3</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w10.html'>w10</a><li><a href='w7.html'>w7</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li class='has-children'><a href='HW 2 Exam.html'>HW 2 Exam</a><ul class='dropdown'><li><a href='w6.html'>w6</a><li><a href='w8-1.html'>w8-1</a></li></li></ul></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w8-2.html'>w8-2</a><li><a href='w8-3.html'>w8-3</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Attendance << <a href='Attendance.html'>Previous</a> <a href='w11.html'>Next</a> >> w11<br /><h1>HW 1</h1>
+    <div id="tipue_search_content">Attendance << <a href='Attendance.html'>Previous</a> <a href='HW 1 Exam.html'>Next</a> >> HW 1 Exam<br /><h1>HW 1</h1>
 <h4>主題: 基於瀏覽器的分散式版次管理與整合程式開發環境 (10%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">USB 隨身碟:</p>
 <p style="padding-left: 60px;">下載 <a href="http://229.cycu.org/python_2025_lite.7z">python_2025_lite.7z</a> (428 MB, 解開壓縮後約 1.5 GB)</p>
@@ -163,7 +163,59 @@ img.add_border {
 <p></p>
 <p>w11</p><p>w11</p><p>w11</p>
 <p>w11</p>
-<br />Attendance << <a href='Attendance.html'>Previous</a> <a href='w11.html'>Next</a> >> w11</div>
+<p>w11_hw</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=1Hils6xNlrqfYmk4" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
+center_x, center_y = 5, 5
+# 圓的半徑
+radius = 4
+# 10x10 的區域大小
+size = 10
+
+# 遍歷區域中的每個位置
+for y in range(size):
+    for x in range(size):
+        # 計算當前位置與圓心的距離平方
+        distance_squared = (x - center_x) ** 2 + (y - center_y) ** 2
+        # 若距離平方小於等於半徑的平方，則列印 *
+        if distance_squared &lt;= radius ** 2:
+            print("*", end="")
+        else:
+            print(" ", end="")
+    # 換行
+    print()</pre>
+<p>設定圖框顏色</p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+#每一個的pixcel數
+gs = 20
+
+#gs"tc = canvas width and height
+
+ctx = canvas.getContext("2d")
+width = 11
+height = 11
+
+
+for i in range(width):
+     for j in range(height):
+         #dRect(i*gs,j*gs,gs,gs,1,"lightgray")
+          ctx.lineWidth = 1
+          ctx.strokeStyle = ('lightgray')
+          ctx.beginPath();
+          ctx.rect(i*gs,j*gs,gs,gs)
+          ctx.stroke();
+    
+
+</pre>
+<p></p><br />Attendance << <a href='Attendance.html'>Previous</a> <a href='HW 1 Exam.html'>Next</a> >> HW 1 Exam</div>
         
     <!-- footer -->
       <div class="container">
