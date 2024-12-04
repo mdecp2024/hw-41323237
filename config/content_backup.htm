@@ -92,7 +92,80 @@ for i in range(width):
 
 </pre>
 <p></p><h2>HW 1 Exam</h2>
-<h3>w11_hw</h3>
+<h3>w13</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html, document as doc, window
+
+# Create canvas element
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# Get the drawing context of the canvas
+ctx = canvas.getContext("2d")
+
+# Draw the first empty square at (0, 0)
+width = 10
+height = 10
+gs = 20  # Grid size (for spacing)
+
+ctx.lineWidth = 2
+ctx.strokeStyle = 'red'  # Color for the first square
+ctx.beginPath()
+ctx.rect(0, 0, width * gs, height * gs)  # Draw a hollow square
+ctx.stroke()
+
+# Draw the second empty square at (100, 100)
+offset_x = 100
+offset_y = 100
+width2 = 10
+height2 = 10
+
+ctx.lineWidth = 2
+ctx.strokeStyle = 'red'  # Color for the second square
+ctx.beginPath()
+ctx.rect(offset_x, offset_y, width2 * gs, height2 * gs)  # Draw another hollow square
+ctx.stroke()
+
+# Create the context menu
+context_menu = html.DIV(style={"position": "absolute", "display": "none", "background-color": "#fff", "border": "1px solid #ccc", "padding": "5px"})
+context_menu &lt;= html.BUTTON("Option 1: Clear Canvas")
+context_menu &lt;= html.BUTTON("Option 2: Draw Circle")
+brython_div &lt;= context_menu
+
+# Function to show context menu
+def show_context_menu(event):
+    event.preventDefault()  # Prevent the default right-click menu
+    context_menu.style.display = "block"  # Show custom context menu
+    context_menu.style.left = f"{event.pageX}px"  # Set the position of the menu
+    context_menu.style.top = f"{event.pageY}px"
+
+# Hide the context menu when clicking elsewhere
+def hide_context_menu(event):
+    context_menu.style.display = "none"
+
+# Attach right-click (contextmenu) event to the canvas
+canvas.bind("contextmenu", show_context_menu)
+
+# Attach click event to document to hide the menu when clicking elsewhere
+document.bind("click", hide_context_menu)
+
+# Function for the menu options
+def clear_canvas(event):
+    ctx.clearRect(0, 0, canvas.width, canvas.height)  # Clear the canvas
+    context_menu.style.display = "none"  # Hide the context menu after action
+
+def draw_circle(event):
+    ctx.beginPath()
+    ctx.arc(200, 200, 50, 0, 2 * window.Math.PI)  # Draw a circle at the center
+    ctx.strokeStyle = 'green'
+    ctx.stroke()
+    context_menu.style.display = "none"  # Hide the context menu after action
+
+# Attach actions to context menu buttons
+context_menu.children[0].bind("click", clear_canvas)  # First button: Clear canvas
+context_menu.children[1].bind("click", draw_circle)  # Second button: Draw a circle
+</pre>
+<p></p><h3>w11_hw</h3>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=sQtuPMpt5H7VndaC" title="YouTube video player" width="560"></iframe></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
 center_x, center_y = 5, 5
@@ -116,8 +189,9 @@ for y in range(size):
 <p></p><h3>w12_hw</h3>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p><h3>w10</h3>
-<p></p>
+<p>題目一</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5irFLSzT0Ak?si=7uqp4ThfxVeb5X6G" title="YouTube video player" width="560"></iframe></p>
+<p>題目二</p>
 <p></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2JTJiO9PigI?si=7w-eDVoG7RqgB6_G" title="YouTube video player" width="560"></iframe></p><h3>w7</h3>
 <p><a href="https://www.youtube.com/watch?v=_7mWpiHSaSs">https://www.youtube.com/watch?v=_7mWpiHSaSs</a></p>
