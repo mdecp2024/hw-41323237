@@ -40,7 +40,59 @@
 <p>w11</p><p>w11</p><p>w11</p>
 <p>w11</p>
 <h3>w11</h3>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=1Hils6xNlrqfYmk4" title="YouTube video player" width="560"></iframe></p><h2>HW 1 Exam</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=1Hils6xNlrqfYmk4" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
+center_x, center_y = 5, 5
+# 圓的半徑
+radius = 4
+# 10x10 的區域大小
+size = 10
+
+# 遍歷區域中的每個位置
+for y in range(size):
+    for x in range(size):
+        # 計算當前位置與圓心的距離平方
+        distance_squared = (x - center_x) ** 2 + (y - center_y) ** 2
+        # 若距離平方小於等於半徑的平方，則列印 *
+        if distance_squared &lt;= radius ** 2:
+            print("*", end="")
+        else:
+            print(" ", end="")
+    # 換行
+    print()</pre>
+<p>設定圖框顏色</p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+#每一個的pixcel數
+gs = 20
+
+#gs"tc = canvas width and height
+
+ctx = canvas.getContext("2d")
+width = 11
+height = 11
+
+
+for i in range(width):
+     for j in range(height):
+         #dRect(i*gs,j*gs,gs,gs,1,"lightgray")
+          ctx.lineWidth = 1
+          ctx.strokeStyle = ('lightgray')
+          ctx.beginPath();
+          ctx.rect(i*gs,j*gs,gs,gs)
+          ctx.stroke();
+    
+
+</pre>
+<p></p><h2>HW 1 Exam</h2>
+<h3>w12</h3>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p><h3>w10</h3>
 <p></p>
