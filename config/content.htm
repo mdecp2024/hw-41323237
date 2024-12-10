@@ -92,7 +92,26 @@ for i in range(width):
 
 </pre>
 <p></p><h2>HW 1 Exam</h2>
-<h3>w13_hw</h3>
+<h3>w13</h3>
+<p></p>
+<p>from browser import html, document as doc, window</p>
+<p># Create canvas element<br/>canvas = html.CANVAS(width=500, height=500) # Increase canvas size to ensure circles are fully visible<br/>brython_div = doc["brython_div1"]<br/>brython_div &lt;= canvas</p>
+<p># Get the drawing context of the canvas<br/>ctx = canvas.getContext("2d")</p>
+<p># Draw the first empty square at (0, 0)<br/>width = 10<br/>height = 10<br/>gs = 20 # Grid size (for spacing)</p>
+<p>ctx.lineWidth = 2<br/>ctx.strokeStyle = 'red' # Color for the first square<br/>ctx.beginPath()<br/>ctx.rect(50, 50, width * gs, height * gs) # Draw a hollow square with offset (50, 50)<br/>ctx.stroke()</p>
+<p># Draw a blue diagonal line inside the first square<br/>ctx.strokeStyle = 'blue' # Set line color to blue<br/>ctx.beginPath()<br/>ctx.moveTo(50, 50) # Starting point: top-left corner of the square<br/>ctx.lineTo(50 + width * gs, 50 + height * gs) # Ending point: bottom-right corner of the square<br/>ctx.stroke()</p>
+<p># Draw the second empty square at (100, 100)<br/>offset_x = 150 # Change the x-coordinate to give more space<br/>offset_y = 150 # Change the y-coordinate to give more space<br/>width2 = 10<br/>height2 = 10</p>
+<p>ctx.lineWidth = 2<br/>ctx.strokeStyle = 'red' # Color for the second square<br/>ctx.beginPath()<br/>ctx.rect(offset_x, offset_y, width2 * gs, height2 * gs) # Draw another hollow square<br/>ctx.stroke()</p>
+<p># Function to draw a circle around a square<br/>def draw_outer_circle(x, y, width, height):<br/> # Calculate the radius of the outer circle (half of the diagonal of the square)<br/> radius = window.Math.sqrt(width ** 2 + height ** 2) / 2<br/> # Calculate the center of the square<br/> center_x = x + width * gs / 2<br/> center_y = y + height * gs / 2<br/> # Draw the outer circle<br/> ctx.beginPath()<br/> ctx.arc(center_x, center_y, radius * gs, 0, 2 * window.Math.PI)<br/> ctx.strokeStyle = 'black' # Color for the outer circle<br/> ctx.lineWidth = 2<br/> ctx.stroke()</p>
+<p># Draw outer circles around both squares<br/>draw_outer_circle(50, 50, width, height) # For the first square<br/>draw_outer_circle(offset_x, offset_y, width2, height2) # For the second square</p>
+<p># Create the context menu<br/>context_menu = html.DIV(style={"position": "absolute", "display": "none", "background-color": "#fff", "border": "1px solid #ccc", "padding": "5px"})<br/>context_menu &lt;= html.BUTTON("Option 1: Clear Canvas")<br/>context_menu &lt;= html.BUTTON("Option 2: Draw Circle")<br/>brython_div &lt;= context_menu</p>
+<p># Function to show context menu<br/>def show_context_menu(event):<br/> event.preventDefault() # Prevent the default right-click menu<br/> context_menu.style.display = "block" # Show custom context menu<br/> context_menu.style.left = f"{event.pageX}px" # Set the position of the menu<br/> context_menu.style.top = f"{event.pageY}px"</p>
+<p># Hide the context menu when clicking elsewhere<br/>def hide_context_menu(event):<br/> context_menu.style.display = "none"</p>
+<p># Attach right-click (contextmenu) event to the canvas<br/>canvas.bind("contextmenu", show_context_menu)</p>
+<p># Attach click event to document to hide the menu when clicking elsewhere<br/>document.bind("click", hide_context_menu)</p>
+<p># Function for the menu options<br/>def clear_canvas(event):<br/> ctx.clearRect(0, 0, canvas.width, canvas.height) # Clear the canvas<br/> context_menu.style.display = "none" # Hide the context menu after action</p>
+<p>def draw_circle(event):<br/> ctx.beginPath()<br/> ctx.arc(200, 200, 50, 0, 2 * window.Math.PI) # Draw a circle at the center<br/> ctx.strokeStyle = 'green'<br/> ctx.stroke()<br/> context_menu.style.display = "none" # Hide the context menu after action</p>
+<p># Attach actions to context menu buttons<br/>context_menu.children[0].bind("click", clear_canvas) # First button: Clear canvas<br/>context_menu.children[1].bind("click", draw_circle) # Second button: Draw a circle</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html, document as doc, window
 
 # Create canvas element
@@ -167,7 +186,7 @@ context_menu.children[1].bind("click", draw_circle)  # Second button: Draw a cir
 </pre>
 <p></p>
 <p><img alt="" height="515" src="/images/螢幕擷取畫面 2024-12-04 103742.png" width="640"/></p><h3>w11_hw</h3>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=sQtuPMpt5H7VndaC" title="YouTube video player" width="560"></iframe></p>
+<p>題目一</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
 center_x, center_y = 5, 5
 # 圓的半徑
@@ -187,7 +206,63 @@ for y in range(size):
             print(" ", end="")
     # 換行
     print()</pre>
-<p></p><h3>w12_hw</h3>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=sQtuPMpt5H7VndaC" title="YouTube video player" width="560"></iframe></p>
+<p>題目二</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# canvas context
+ctx = canvas.getContext("2d")
+
+# 定義繪製矩形的函數
+def dRect(lux, luy, w, h, s=1, c="lightgrey"):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+
+# 繪製網格
+def grid(width, height, grid_pix):
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 填滿指定格子
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect((x - 1) * gs, (y - 1) * gs, gs, gs)
+
+# 判斷是否在圓形範圍內
+def is_in_circle(cx, cy, x, y, r):
+    # 使用格子的中心點來判斷是否在圓形範圍內
+    return ((x - cx) ** 2 + (y - cy) ** 2) &lt;= r ** 2
+
+# 圓形繪製
+def draw_circle(grid_size, radius):
+    center = (grid_size // 2)  # 圓心在網格的中間格子
+    for i in range(1, grid_size + 1):
+        for j in range(1, grid_size + 1):
+            # 檢查格子的中心點是否在圓內
+            # 每個格子的中心點是 (i-0.5, j-0.5)，這樣可以判斷格子的中心是否在圓形內
+            if is_in_circle(center, center, i - 0.5, j - 0.5, radius):
+                fill(i, j, "black")
+
+# 主程式
+grid(10, 10, gs)  # 繪製 10x10 的網格
+draw_circle(10, 4.5)  # 圓的半徑為 4.5
+</pre>
+<p><br/><br/></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/rO8R-e-fG9s?si=H79jhGlRerfD0Yui" title="YouTube video player" width="560"></iframe></p>
+<p><span>已經有能力修改方案一將其改造成用黑色方塊圍成圓形區域，讓自己多學會一點方案設計，將來可以運用在更多地方。</span></p><h3>w12_hw</h3>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p><h3>w10</h3>
 <p>題目一</p>

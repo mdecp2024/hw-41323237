@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w13_hw.html'>w13_hw</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w10.html'>w10</a><li><a href='w7.html'>w7</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li class='has-children'><a href='HW 2 Exam.html'>HW 2 Exam</a><ul class='dropdown'><li><a href='w6.html'>w6</a><li><a href='w8-1.html'>w8-1</a></li></li></ul></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w8-2.html'>w8-2</a><li><a href='w8-3.html'>w8-3</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w13.html'>w13</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w10.html'>w10</a><li><a href='w7.html'>w7</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li class='has-children'><a href='HW 2 Exam.html'>HW 2 Exam</a><ul class='dropdown'><li><a href='w6.html'>w6</a><li><a href='w8-1.html'>w8-1</a></li></li></ul></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w8-2.html'>w8-2</a><li><a href='w8-3.html'>w8-3</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,8 +141,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w13_hw << <a href='w13_hw.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw<br /><h1>w11_hw</h1>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=sQtuPMpt5H7VndaC" title="YouTube video player" width="560"></iframe></p>
+    <div id="tipue_search_content">w13 << <a href='w13.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw<br /><h1>w11_hw</h1>
+<p>題目一</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 圓心位置
 center_x, center_y = 5, 5
 # 圓的半徑
@@ -162,7 +162,63 @@ for y in range(size):
             print(" ", end="")
     # 換行
     print()</pre>
-<p></p><br />w13_hw << <a href='w13_hw.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw</div>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/OALd-RP43gI?si=sQtuPMpt5H7VndaC" title="YouTube video player" width="560"></iframe></p>
+<p>題目二</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# canvas context
+ctx = canvas.getContext("2d")
+
+# 定義繪製矩形的函數
+def dRect(lux, luy, w, h, s=1, c="lightgrey"):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+
+# 繪製網格
+def grid(width, height, grid_pix):
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 填滿指定格子
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect((x - 1) * gs, (y - 1) * gs, gs, gs)
+
+# 判斷是否在圓形範圍內
+def is_in_circle(cx, cy, x, y, r):
+    # 使用格子的中心點來判斷是否在圓形範圍內
+    return ((x - cx) ** 2 + (y - cy) ** 2) &lt;= r ** 2
+
+# 圓形繪製
+def draw_circle(grid_size, radius):
+    center = (grid_size // 2)  # 圓心在網格的中間格子
+    for i in range(1, grid_size + 1):
+        for j in range(1, grid_size + 1):
+            # 檢查格子的中心點是否在圓內
+            # 每個格子的中心點是 (i-0.5, j-0.5)，這樣可以判斷格子的中心是否在圓形內
+            if is_in_circle(center, center, i - 0.5, j - 0.5, radius):
+                fill(i, j, "black")
+
+# 主程式
+grid(10, 10, gs)  # 繪製 10x10 的網格
+draw_circle(10, 4.5)  # 圓的半徑為 4.5
+</pre>
+<p><br/><br/></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/rO8R-e-fG9s?si=H79jhGlRerfD0Yui" title="YouTube video player" width="560"></iframe></p>
+<p><span>已經有能力修改方案一將其改造成用黑色方塊圍成圓形區域，讓自己多學會一點方案設計，將來可以運用在更多地方。</span></p><br />w13 << <a href='w13.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw</div>
         
     <!-- footer -->
       <div class="container">
