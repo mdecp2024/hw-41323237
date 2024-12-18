@@ -93,7 +93,25 @@ for i in range(width):
 </pre>
 <p></p><h2>HW 1 Exam</h2>
 <h3>w15</h3>
-<p><a href="https://mdecp2024.github.io/hw-41323237/content/Brython.html?src=https://gist.githubusercontent.com/41323237/f173084393905a478c883ec97037469f/raw/ab4c2e6a578cba78d5e4679bc64def34b118e1de/w15.py">從 1 累加到 100</a></p><h3>w14_ex</h3>
+<p><a href="https://mdecp2024.github.io/hw-41323237/content/Brython.html?src=https://gist.githubusercontent.com/41323237/f173084393905a478c883ec97037469f/raw/ab4c2e6a578cba78d5e4679bc64def34b118e1de/w15.py">從 1 累加到 100</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># sum 初始值設為 0
+# sum 為全域變數
+sum = 0
+
+def addto(init, upto):
+    global sum  # 指定使用全域變數 sum
+    # 利用 for 迴圈與變數加法進行累加
+    for i in range(init, upto + 1): 
+        sum = sum + i
+    print("從" + str(init) + "累加到" + str(upto) + "=" + str(sum))
+
+# 呼叫函數並顯示結果
+addto(1, 100)
+
+# 顯示 sum 的最終值
+print(sum)
+</pre>
+<p></p><h3>w14_ex</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 import math
