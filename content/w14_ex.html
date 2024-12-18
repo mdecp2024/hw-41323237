@@ -141,8 +141,81 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w6 << <a href='w6.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3<br /><h1>w8-1</h1>
-<br />w6 << <a href='w6.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3</div>
+    <div id="tipue_search_content">w15 << <a href='w15.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw<br /><h1>w14_ex</h1>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+
+# 創建畫布元素
+canvas = html.CANVAS(width=600, height=600)  # 調整畫布大小以適應圓形
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+ctx = canvas.getContext("2d")
+
+grid_size = 2
+ctx.lineWidth = 1
+
+# 定義三個圓的屬性（圓心座標和半徑）
+circle1 = {'cx': 200, 'cy': 200, 'r': 141.4, 'color': 'lightgreen'}
+circle2 = {'cx': 300, 'cy': 300, 'r': 141.4, 'color': 'lightcoral'}
+circle3 = {'cx': 400, 'cy': 200, 'r': 141.4, 'color': 'lightblue'}
+
+# 函數：檢查點是否在圓內
+def point_in_circle(x, y, circle):
+    return (x - circle['cx'])**2 + (y - circle['cy'])**2 &lt; circle['r']**2
+
+# 函數：檢查點是否在兩個或更多圓的重疊區域
+def get_overlap_color(x, y):
+    overlap_count = 0
+    if point_in_circle(x, y, circle1):
+        overlap_count += 1
+    if point_in_circle(x, y, circle2):
+        overlap_count += 1
+    if point_in_circle(x, y, circle3):
+        overlap_count += 1
+    
+    # 如果點位於兩個或更多圓的區域，則返回重疊區域的顏色
+    if overlap_count &gt; 1:
+        return 'purple'
+    # 否則，返回圓的原始顏色
+    elif point_in_circle(x, y, circle1):
+        return circle1['color']
+    elif point_in_circle(x, y, circle2):
+        return circle2['color']
+    elif point_in_circle(x, y, circle3):
+        return circle3['color']
+    return None  # 如果不在任何圓內，則返回 None
+
+# 繪製圓形及其顏色
+def draw_circle(circle):
+    ctx.fillStyle = circle['color']
+    ctx.beginPath()
+    ctx.arc(circle['cx'], circle['cy'], circle['r'], 0, 2 * math.pi)
+    ctx.fill()
+
+draw_circle(circle1)
+draw_circle(circle2)
+draw_circle(circle3)
+
+# 可選步驟：用透明顏色填充畫布背景
+ctx.clearRect(0, 0, 600, 600)  # 清除畫布上的內容，去除圓形外的任何初始內容
+
+# 函數：掃描並繪製顏色區域
+def scan_and_draw():
+    for x in range(0, 600, grid_size):  # 遍歷整個畫布
+        for y in range(0, 600, grid_size):  # 從上到下檢查
+            color = get_overlap_color(x, y)  # 根據每個點的位置獲取顏色（包括重疊區域）
+            if color:  # 只有當顏色不為 None 時才繪製
+                ctx.fillStyle = color
+                ctx.beginPath()
+                ctx.arc(x, y, int(grid_size / 2), 0, 2 * math.pi)  # 繪製小圓點
+                ctx.fill()  # 填充顏色
+
+# 開始掃描並繪製顏色區域，包含重疊部分
+scan_and_draw()
+</pre>
+<p></p><br />w15 << <a href='w15.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw</div>
         
     <!-- footer -->
       <div class="container">
